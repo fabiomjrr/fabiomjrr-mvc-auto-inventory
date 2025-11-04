@@ -1,0 +1,169 @@
+﻿@{
+    ViewData["Title"] = "Iniciar Sesión | La Bodega del Yankee";
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #1f2a3a 0%, #293846 100%); /* Fondo oscuro, metálico */
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .form-box {
+        width: 400px; /* Un poco más ancho para el logo */
+        background: #2b3e50; /* Fondo gris-azul oscuro para la caja */
+        padding: 40px 45px; /* Más padding */
+        border-radius: 12px; /* Bordes ligeramente más suaves */
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6); /* Sombra más fuerte y profunda */
+        animation: fadeIn 1s ease-in-out;
+        border: 2px solid #4a6a8a; /* Borde más pronunciado, metálico */
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 30px; /* Más espacio debajo del logo */
+    }
+
+        .logo-container img {
+            max-width: 280px; /* Ajusta el tamaño máximo del logo para que se vea bien */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+    h2 {
+        text-align: center;
+        color: #f7931e; /* Naranja vibrante del logo para el título */
+        margin-top: 25px;
+        margin-bottom: 35px; /* Más espacio */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px; /* Más espaciado entre letras */
+        font-size: 26px; /* Título más grande */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600; /* Más peso */
+        color: #ecf0f1; /* Blanco para etiquetas */
+        font-size: 16px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 13px 18px; /* Más padding */
+        margin-bottom: 25px; /* Más espacio */
+        border: 1px solid #6c8091; /* Borde sutil */
+        border-radius: 8px; /* Bordes más suaves */
+        box-sizing: border-box;
+        font-size: 17px; /* Texto más grande */
+        background-color: #3f5569; /* Fondo de input ligeramente más claro */
+        color: #ecf0f1;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #f7931e; /* Naranja de acento al enfocar */
+            box-shadow: 0 0 0 4px rgba(247, 147, 30, 0.3); /* Sombra de enfoque naranja */
+            outline: none;
+        }
+
+    .btn-custom {
+        width: 100%;
+        padding: 16px; /* Botón más grande */
+        background: linear-gradient(45deg, #1d61a8, #f7931e); /* Gradiente de azul a naranja del logo */
+        color: #ffffff; /* Texto blanco en el botón */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 20px; /* Texto más grande */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    }
+
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #f7931e, #1d61a8); /* Invertir gradiente al pasar el mouse */
+            transform: translateY(-3px); /* Efecto 3D más pronunciado */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+    #lblMensaje {
+        color: #e74c3c; /* Rojo de error */
+        text-align: center;
+        margin-top: 25px;
+        font-weight: 700; /* Más peso */
+        font-size: 16px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 30px; /* Más espacio */
+    }
+
+        .register-link a {
+            color: #a0c4f7; /* Azul claro metálico para enlaces */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+            .register-link a:hover {
+                color: #f7931e; /* Naranja de acento al pasar el mouse */
+                text-decoration: underline;
+            }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="form-box">
+    <div class="logo-container">
+        @* Ruta al logo - Asegúrate de que el nombre del archivo sea exacto *@
+        <img src="@Url.Content("~/Content/img/BYL2.png")"
+             alt="La Bodega del Yankee Logo" />
+    </div>
+
+    <h2>Iniciar Sesión</h2>
+
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <label for="Usuario">Usuario:</label>
+        <input type="text" id="Usuario" name="Usuario" required>
+
+        <label for="Contrasena">Contraseña:</label>
+        <input type="password" id="Contrasena" name="Contrasena" required>
+
+        <button type="submit" class="btn-custom">Entrar</button>
+    }
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <p id="lblMensaje">@ViewBag.Mensaje</p>
+    }
+
+    <div class="register-link">
+        <a href="@Url.Action("Register", "Login")">¿No tienes cuenta? Regístrate</a>
+    </div>
+</div>
