@@ -36,11 +36,6 @@ App_Data/
 *.vssscc
 *.scc
 
-# Archivos de configuración sensibles (opcional)
-web.config
-appsettings.json
-appsettings.Development.json
-
 # Archivos de usuario locales
 *.swp
 *.DS_Store
